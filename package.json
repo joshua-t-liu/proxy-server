@@ -1,0 +1,37 @@
+{
+  "name": "trulia-webiste",
+  "version": "1.0.0",
+  "description": "recreate the trulia product page for homes on sale",
+  "scripts": {
+    "start": "nodemon ssr.js --watch",
+    "compile": "webpack --config webpack.config.js --watch",
+    "compile-client": "webpack --config webpack.config.client.js --watch"
+  },
+  "dependencies": {
+    "@google/markerclustererplus": "^5.0.3",
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "nodemon": "^2.0.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "styled-components": "^5.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "@svgr/webpack": "^5.4.0",
+    "babel-loader": "^8.1.0",
+    "babel-plugin-styled-components": "^1.10.7",
+    "css-loader": "^3.5.3",
+    "file-loader": "^6.0.0",
+    "style-loader": "^1.2.1",
+    "svg-url-loader": "^5.0.0",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-node-externals": "^1.7.2"
+  }
+}
