@@ -3522,7 +3522,7 @@ var initial = {
   imageURLs: [],
   tagsProcessed: []
 };
-var server = 'http://localhost:3001/homes';
+var server = 'http://app:3001/homes';
 
 var fetchData = function fetchData(id) {
   return axios__WEBPACK_IMPORTED_MODULE_6___default.a.get("".concat(server, "/").concat(id, "/images"));
