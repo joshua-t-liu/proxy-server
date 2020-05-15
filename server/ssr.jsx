@@ -27,14 +27,13 @@ app.get('/:id', (req, res) => {
   Promise.allSettled(requests)
   .then((results) => results.map((result) => {
     if (result.status === 'fulfilled') {
-      if (result.value){
+      if (result.value) {
         if (Array.isArray(result.value)) {
           return result.value.map(r => r.value.data);
         } else {
           return result.value.data;
         }
       }
-      return result.value || {};
     }
     return {};
   }))

@@ -140,8 +140,6 @@ app.get('/:id', function (req, res) {
             return result.value.data;
           }
         }
-
-        return result.value || {};
       }
 
       return {};
@@ -246,21 +244,29 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+ // routes should send style, script, and  body
 
 /* harmony default export */ __webpack_exports__["default"] = ([{
   Component: _image_gallery_client_src_components_App_App_jsx__WEBPACK_IMPORTED_MODULE_3__["default"],
   id: 'image-gallery',
-  router: true
-}, {
-  Component: _similar_homes_client_src_components_App_js__WEBPACK_IMPORTED_MODULE_2__["default"],
-  id: 'similar-homes'
-}, {
-  Component: _comment_section_client_src_components_App_jsx__WEBPACK_IMPORTED_MODULE_1__["default"],
-  id: 'comment-section'
-}, {
-  Component: _mortgage_calculator_jsx_MortgageCalculator_jsx__WEBPACK_IMPORTED_MODULE_0__["default"],
-  id: 'mortgage-calculator'
-}]);
+  router: true,
+  path: 'http://app:3001'
+} // {
+//   Component: SimilarHomes,
+//   id: 'similar-homes',
+//   path: 'http://localhost:3002',
+// },
+// {
+//   Component: CommentSection,
+//   id: 'comment-section',
+//   path: 'http://localhost:3003',
+// },
+// {
+//   Component: MortageCalculator,
+//   id: 'mortgage-calculator',
+//   path: 'http://localhost:3004',
+// },
+]);
 
 /***/ }),
 /* 8 */
@@ -563,7 +569,10 @@ var MortgageCalculator = /*#__PURE__*/function (_React$Component) {
 var Section = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.section.withConfig({
   displayName: "MortgageCalculator__Section",
   componentId: "sc-13mu8gr-0"
-})(["width:880px;color:#222;font-family:sans-serif;font-size:small;margin:auto;"]);
+})(["width:880px;color:#222;font-family:sans-serif;font-size:small;margin:auto;"]); // App.fetchData = (id) => {
+//   fetch('/home/' + props.id)
+//   fetch('/rate/' + home.zipCode)
+// }
 
 /***/ }),
 /* 9 */
@@ -3914,12 +3923,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_router_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(5);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _other_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(58);
+/* harmony import */ var _Other_Modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(58);
 /* harmony import */ var _Head__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(59);
 /* harmony import */ var _Media_Photos__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(66);
-/* harmony import */ var _Media_Map__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(85);
-/* harmony import */ var _Media_StreetView__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(88);
-/* harmony import */ var _Media_Schools__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(90);
+/* harmony import */ var _Media_Map__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(86);
+/* harmony import */ var _Media_StreetView__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(89);
+/* harmony import */ var _Media_Schools__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(91);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4009,7 +4018,7 @@ var Body = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConf
       return setWidth(window.innerWidth);
     });
   });
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_other_modal__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MediaContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Head__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Other_Modal__WEBPACK_IMPORTED_MODULE_3__["default"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MediaContainer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Head__WEBPACK_IMPORTED_MODULE_4__["default"], {
     routes: routes
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Body, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, routes.map(function (_ref2, idx) {
     var path = _ref2.path,
@@ -4038,8 +4047,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Modal = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
-  displayName: "modal__Modal",
-  componentId: "sc-1ps7cw1-0"
+  displayName: "Modal",
+  componentId: "mwnzl9-0"
 })(["position:fixed;height:100vh;width:100vw;backdrop-filter:blur(20px);background-color:rgba(0,0,0,0.6);top:0;left:0;z-index:1000;transition:opacity 0.5s;"]);
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
   var children = _ref.children;
@@ -4316,16 +4325,12 @@ var Container = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.wit
       style: Object.assign({}, child.props.style, {
         flexShrink: 0
       }),
+      selected: selected === idx,
       onClick: function onClick(event) {
-        if (child.props.onClick) {
-          child.props.onClick(event);
-        }
-
-        ;
+        if (child.props.onClick) child.props.onClick(event);
 
         _onClick(event);
-      },
-      selected: selected === idx
+      }
     });
   })));
 }));
@@ -4475,7 +4480,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Carousel__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(67);
-/* harmony import */ var _ResponsiveScheduleForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(72);
+/* harmony import */ var _ResponsiveScheduleForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(73);
 
 
 
@@ -4520,8 +4525,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(69);
-/* harmony import */ var _Slide__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(70);
-/* harmony import */ var _SlideButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(71);
+/* harmony import */ var _Slide__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(71);
+/* harmony import */ var _SlideButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(72);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -4627,6 +4632,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Other_Auxilliary__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(70);
+
 
 
 var Footer = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withConfig({
@@ -4651,20 +4658,62 @@ var Summary = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withC
   var address = home.address,
       price = home.price,
       rooms = home.rooms,
-      imageURLs = home.imageURLs;
-  var pipe = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    style: {
-      margin: '0px 8px'
-    }
-  }, "|");
+      imageURLs = home.imageURLs; // const pipe = <span style={{ margin: '0px 8px' }}>|</span>
+
   var offset = innerWidth < 898 ? '308px' : '';
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Footer, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Count, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "".concat(index + 1, "/").concat(imageURLs.length))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Summary, {
     offset: offset
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, address), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, pipe, price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, pipe, rooms)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, address), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Other_Auxilliary__WEBPACK_IMPORTED_MODULE_2__["Pipe"], null), price), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Other_Auxilliary__WEBPACK_IMPORTED_MODULE_2__["Pipe"], null), rooms)));
 });
 
 /***/ }),
 /* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Dot", function() { return Dot; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Divider", function() { return Divider; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Pipe", function() { return Pipe; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Dot = function Dot() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    style: {
+      margin: '0 4px '
+    }
+  }, "\u2022");
+};
+
+var Divider = function Divider() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      padding: '4px 0 8px 0',
+      lineHeight: 0.1
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      width: '280px',
+      height: '1px',
+      backgroundColor: 'rgb(232, 233, 234)'
+    }
+  }));
+};
+
+var Pipe = function Pipe() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    style: {
+      margin: '0px 8px'
+    }
+  }, "|");
+};
+
+
+
+/***/ }),
+/* 71 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4706,7 +4755,7 @@ var Image = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.img.withCon
 });
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4749,7 +4798,7 @@ var dRight = 'M17.65 16.513l-7.147-7.055 1.868-1.893 9.068 8.951-9.069 8.927-1.8
 });
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4758,7 +4807,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Forms_ScheduleForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(73);
+/* harmony import */ var _Forms_ScheduleForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(74);
 /* harmony import */ var _buttons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(54);
 
 
@@ -4786,17 +4835,17 @@ var Footer = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withCo
 });
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ScheduleForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(74);
+/* harmony import */ var _ScheduleForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(75);
 
 /* harmony default export */ __webpack_exports__["default"] = (_ScheduleForm__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4805,9 +4854,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(75);
-/* harmony import */ var _Body__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(77);
-/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(84);
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(76);
+/* harmony import */ var _Body__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(78);
+/* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(85);
 
 
 
@@ -4833,7 +4882,7 @@ var header = 'Schedule A Tour';
 });
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4842,7 +4891,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _ToolTip_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(76);
+/* harmony import */ var _ToolTip_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(77);
 
 
 
@@ -4871,7 +4920,7 @@ var tooltipMsg = 'If you\'d like to tour this home wihtout leaving yours, select
 });
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4980,7 +5029,7 @@ var ToolTip = function ToolTip(_ref6) {
 });
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4990,9 +5039,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _buttons_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(54);
-/* harmony import */ var _Next7DaysSchedule_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(78);
-/* harmony import */ var _CheckBox_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(82);
-/* harmony import */ var _ErrorMessage_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(83);
+/* harmony import */ var _Next7DaysSchedule_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(79);
+/* harmony import */ var _CheckBox_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(83);
+/* harmony import */ var _ErrorMessage_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(84);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -5119,7 +5168,7 @@ var TourType = styled_components__WEBPACK_IMPORTED_MODULE_1___default()(_buttons
 });
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5130,8 +5179,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _buttons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(54);
 /* harmony import */ var _CarouselFixed__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(60);
-/* harmony import */ var _DateTile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(79);
-/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(80);
+/* harmony import */ var _DateTile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(80);
+/* harmony import */ var _helper__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(81);
 
 
 
@@ -5185,7 +5234,7 @@ var SlideButton = function SlideButton(left) {
 });
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5233,12 +5282,12 @@ var Button = styled_components__WEBPACK_IMPORTED_MODULE_1___default()(_buttons_j
 });
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _db_constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(81);
+/* harmony import */ var _db_constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(82);
 /* harmony import */ var _db_constants__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_db_constants__WEBPACK_IMPORTED_MODULE_0__);
 
 
@@ -5265,7 +5314,7 @@ var getNext7Days = function getNext7Days() {
 /* harmony default export */ __webpack_exports__["default"] = (getNext7Days);
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports) {
 
 var MONTHS = {
@@ -5299,7 +5348,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5374,7 +5423,7 @@ var FieldMessage = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.
 });
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5412,7 +5461,7 @@ var Message = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.withC
 });
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5456,7 +5505,7 @@ var disclosure = 'By pressing Schedule A Tour, you agree that Trulia and real es
 });
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5465,8 +5514,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _MapEmbed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(86);
-/* harmony import */ var _ResponsiveScheduleForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(72);
+/* harmony import */ var _MapEmbed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(87);
+/* harmony import */ var _ResponsiveScheduleForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(73);
 
 
 
@@ -5486,7 +5535,7 @@ var MediaMap = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.div.with
 });
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5495,7 +5544,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _google_markerclustererplus__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(87);
+/* harmony import */ var _google_markerclustererplus__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(88);
 /* harmony import */ var _google_markerclustererplus__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_google_markerclustererplus__WEBPACK_IMPORTED_MODULE_2__);
 
 
@@ -5567,13 +5616,13 @@ var icon = 'https://www.trulia.com/images/app-shopping/map-marker-txl3R/MapMarke
 });
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports) {
 
 module.exports = require("@google/markerclustererplus");
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5582,8 +5631,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _StreetViewEmbed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(89);
-/* harmony import */ var _ResponsiveScheduleForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(72);
+/* harmony import */ var _StreetViewEmbed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(90);
+/* harmony import */ var _ResponsiveScheduleForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(73);
 
 
 
@@ -5603,7 +5652,7 @@ var MediaStreetView = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.d
 });
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5644,7 +5693,7 @@ var StreetViewEmbed = styled_components__WEBPACK_IMPORTED_MODULE_1___default.a.d
 });
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5653,8 +5702,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _MapEmbed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(86);
-/* harmony import */ var _Forms_SchoolForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(91);
+/* harmony import */ var _MapEmbed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(87);
+/* harmony import */ var _Forms_SchoolForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(92);
 /* harmony import */ var _Forms_SchoolForm_dummyData__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(97);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -5746,17 +5795,17 @@ var assignedIcon = 'https://www.trulia.com/images/txl3R/map_markers/schools/Assi
 });
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _SchoolForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(92);
+/* harmony import */ var _SchoolForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(93);
 
 /* harmony default export */ __webpack_exports__["default"] = (_SchoolForm__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5765,9 +5814,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(93);
-/* harmony import */ var _Filters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(94);
-/* harmony import */ var _List__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(95);
+/* harmony import */ var _Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(94);
+/* harmony import */ var _Filters__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(95);
+/* harmony import */ var _List__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(96);
 
 
 
@@ -5810,7 +5859,7 @@ var disclosure = 'Check with the applicable school district prior to making a de
 });
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5861,7 +5910,7 @@ var Collapse = function Collapse(_ref) {
 });
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5971,7 +6020,7 @@ var LevelFilter = function LevelFilter(_ref2) {
 });
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5980,7 +6029,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(styled_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Other_Auxilliary__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(96);
+/* harmony import */ var _Other_Auxilliary__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(70);
 
 
 
@@ -6085,43 +6134,6 @@ var SchoolInfo = function SchoolInfo(_ref2) {
     ;
   })));
 });
-
-/***/ }),
-/* 96 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Dot", function() { return Dot; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Divider", function() { return Divider; });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-
-var Dot = function Dot() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    style: {
-      margin: '0 4px '
-    }
-  }, "\u2022");
-};
-
-var Divider = function Divider() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: {
-      padding: '4px 0 8px 0',
-      lineHeight: 0.1
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: {
-      width: '280px',
-      height: '1px',
-      backgroundColor: 'rgb(232, 233, 234)'
-    }
-  }));
-};
-
-
 
 /***/ }),
 /* 97 */
