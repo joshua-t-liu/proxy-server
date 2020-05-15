@@ -12,11 +12,11 @@ export default [
     router: true,
     path: 'http://app:3001',
   },
-  // {
-  //   Component: SimilarHomes,
-  //   id: 'similar-homes',
-  //   path: 'http://localhost:3002',
-  // },
+  {
+    Component: SimilarHomes,
+    id: 'similar-homes',
+    path: 'http://localhost:3002',
+  },
   // {
   //   Component: CommentSection,
   //   id: 'comment-section',

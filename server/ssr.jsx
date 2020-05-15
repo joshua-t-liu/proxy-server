@@ -45,7 +45,9 @@ app.get('/:id', (req, res) => {
       const sheet = new ServerStyleSheet();
       const html = renderToString(sheet.collectStyles(
         (router)
-        ? <Router children={<Component homeInit={data[idx]} pathname={req.url} />} />
+        ? <Router>
+            <Component homeInit={data[idx]} pathname={req.url} />
+          </Router>
         : <Component data={data[idx]} />
       ));
 

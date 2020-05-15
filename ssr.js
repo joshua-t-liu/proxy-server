@@ -152,12 +152,10 @@ app.get('/:id', function (req, res) {
           id = _ref2.id,
           router = _ref2.router;
       var sheet = new styled_components__WEBPACK_IMPORTED_MODULE_4__["ServerStyleSheet"]();
-      var html = Object(react_dom_server__WEBPACK_IMPORTED_MODULE_3__["renderToString"])(sheet.collectStyles(router ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["StaticRouter"], {
-        children: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Component, {
-          homeInit: data[idx],
-          pathname: req.url
-        })
-      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Component, {
+      var html = Object(react_dom_server__WEBPACK_IMPORTED_MODULE_3__["renderToString"])(sheet.collectStyles(router ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["StaticRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Component, {
+        homeInit: data[idx],
+        pathname: req.url
+      })) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(Component, {
         data: data[idx]
       })));
       body.push([html, id]);
@@ -251,12 +249,11 @@ __webpack_require__.r(__webpack_exports__);
   id: 'image-gallery',
   router: true,
   path: 'http://app:3001'
+}, {
+  Component: _similar_homes_client_src_components_App_js__WEBPACK_IMPORTED_MODULE_2__["default"],
+  id: 'similar-homes',
+  path: 'http://localhost:3002'
 } // {
-//   Component: SimilarHomes,
-//   id: 'similar-homes',
-//   path: 'http://localhost:3002',
-// },
-// {
 //   Component: CommentSection,
 //   id: 'comment-section',
 //   path: 'http://localhost:3003',
@@ -3511,7 +3508,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
- // import fetch from 'isomorphic-fetch';
 
 
 var ImageContainer = styled_components__WEBPACK_IMPORTED_MODULE_2___default.a.div.withConfig({
@@ -3522,7 +3518,7 @@ var initial = {
   imageURLs: [],
   tagsProcessed: []
 };
-var server = 'http://app:3001/homes';
+var server = 'http://localhost:3001/homes';
 
 var fetchData = function fetchData(id) {
   return axios__WEBPACK_IMPORTED_MODULE_6___default.a.get("".concat(server, "/").concat(id, "/images"));
@@ -3550,7 +3546,9 @@ var App = function App(_ref) {
       fetchData(1).then(function (response) {
         return response.data;
       }).then(function (home) {
-        return setHome(home);
+        if (home) {
+          setHome(home);
+        }
       })["catch"](function (err) {
         return console.error(err);
       });
