@@ -6,6 +6,6 @@ module.exports =  [
   },
   {
     id: 'mortgage-calculator',
-    route: 'http://localhost:3004',
+    route: 'http://18.221.128.76:3004',
   },
 ];
