@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "recreate the trulia product page for homes on sale",
   "scripts": {
-    "start": "nodemon api.js --watch",
-    "compile": "webpack --config webpack.config.js --watch",
+    "start": "nodemon api.js --watch"
   },
   "dependencies": {
     "@google/markerclustererplus": "^5.0.3",
