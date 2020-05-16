@@ -1,10 +1,13 @@
 const express = require('express');
 const http = require('http');
+const compression = require('compression');
 const template = require('./server/template.js');
 const services = require('./server/routes.js');
 
 const app = express();
 const PORT = 3000;
+
+app.use(compression());
 
 app.get('/:id', (req, res) => {
   const responses = services.map(({ route }) => {
@@ -85,6 +88,42 @@ app.get('/home/similar', (req, res) => {
     .on('error', (err) => res.send(404));
   });
 })
+
+app.get('/house/comments/:id', (req, res) => {
+  const { id } = req.params;
+  http.get(`${services[3].route}/house/comments/${id}`, (serviceRes) => {
+    let data = '';
+    serviceRes.on('data', (chunk) => {data += chunk});
+    serviceRes.on('end', () => {
+      res.json(JSON.parse(data));
+    })
+    .on('error', (err) => res.send(404));
+  });
+});
+///house/comments/2
+//comments/:id
+
+app.get('/:id/0.bundle.js', (req, res) => {
+  http.get(`${services[0].route}/0.bundle.js`, (serviceRes) => {
+    let data = '';
+    serviceRes.on('data', (chunk) => {data += chunk});
+    serviceRes.on('end', () => {
+      res.send(data);
+    })
+    .on('error', (err) => res.send(404));
+  });
+});
+
+app.get('/:id/1.bundle.js', (req, res) => {
+  http.get(`${services[0].route}/1.bundle.js`, (serviceRes) => {
+    let data = '';
+    serviceRes.on('data', (chunk) => {data += chunk});
+    serviceRes.on('end', () => {
+      res.send(data);
+    })
+    .on('error', (err) => res.send(404));
+  });
+});
 
 app.listen(PORT, (err) => {
   if (err) throw err;

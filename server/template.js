@@ -6,7 +6,7 @@ module.exports = (bundles) => (
     <body>
       <div id='image-gallery'></div>
       <div id='app'></div>
-      <div id='comment-section'></div>
+      <div id='commentSection'></div>
       <div id='mortgage-calculator'></div>
       <script>${bundles.join('')}</script>
     </body>
