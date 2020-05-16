@@ -1,13 +1,14 @@
-export default (components, styles, data) => (
+module.exports = (bundles) => (
   `<!DOCTYPE html>
   <html>
     <head>
-    <script src='/ssr_bundle.js' defer></script>
-    <script>window.__TRULIA_DATA__ = ${JSON.stringify(data)}</script>
-    ${styles.join('')}
     </head>
     <body>
-      ${components.map(([component, id]) => `<div id=${id}>${component}</div>`).join('')}
+      <div id='image-gallery'></div>
+      <div id='similar-homes'></div>
+      <div id='comment-section'></div>
+      <div id='mortgage-calculator'></div>
+      <script>${bundles.join('')}</script>
     </body>
   </html>`
 );
