@@ -62,6 +62,30 @@ app.get('/mortgageRate/:id', (req, res) => {
   });
 })
 
+app.get('/home/newest', (req, res) => {
+  const { id } = req.params;
+  http.get(`${services[2].route}/home/newest`, (serviceRes) => {
+    let data = '';
+    serviceRes.on('data', (chunk) => {data += chunk});
+    serviceRes.on('end', () => {
+      res.json(JSON.parse(data));
+    })
+    .on('error', (err) => res.send(404));
+  });
+})
+
+app.get('/home/similar', (req, res) => {
+  const { id } = req.params;
+  http.get(`${services[2].route}/home/similar`, (serviceRes) => {
+    let data = '';
+    serviceRes.on('data', (chunk) => {data += chunk});
+    serviceRes.on('end', () => {
+      res.json(JSON.parse(data));
+    })
+    .on('error', (err) => res.send(404));
+  });
+})
+
 app.listen(PORT, (err) => {
   if (err) throw err;
   console.log('listening on port', PORT);
