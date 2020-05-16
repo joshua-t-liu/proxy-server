@@ -38,6 +38,30 @@ app.get('/homes/:id/images', (req, res) => {
   });
 });
 
+app.get('/mortgageId/:id', (req, res) => {
+  const { id } = req.params;
+  http.get(`${services[1].route}/mortgageId/${id}`, (serviceRes) => {
+    let data = '';
+    serviceRes.on('data', (chunk) => {data += chunk});
+    serviceRes.on('end', () => {
+      res.json(JSON.parse(data));
+    })
+    .on('error', (err) => res.send(404));
+  });
+})
+
+app.get('/mortgageRate/:id', (req, res) => {
+  const { id } = req.params;
+  http.get(`${services[1].route}/mortgageRate/${id}`, (serviceRes) => {
+    let data = '';
+    serviceRes.on('data', (chunk) => {data += chunk});
+    serviceRes.on('end', () => {
+      res.json(JSON.parse(data));
+    })
+    .on('error', (err) => res.send(404));
+  });
+})
+
 app.listen(PORT, (err) => {
   if (err) throw err;
   console.log('listening on port', PORT);
