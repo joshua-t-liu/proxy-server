@@ -9,11 +9,13 @@ const PORT = 3000;
 
 app.use(compression());
 
+app.use(express.static('public'));
+
 app.get('/:id', (req, res) => {
   const responses = services.map(({ route }) => {
     return new Promise((resolve, reject) => {
       let data = ''
-      http.get(`${route}/bundle.js`, (res) => {
+      http.get(`${route}/main.bundle.js`, (res) => {
         res.on('data', (chunk) => data += chunk);
         res.on('end', () => {
           resolve(data);
@@ -26,7 +28,10 @@ app.get('/:id', (req, res) => {
   .then(responses => {
     res.send(template(responses));
   })
-  .catch((err) => res.send(404));
+  .catch((err) => {
+    console.error(err);
+    res.send(404);
+  });
 });
 
 app.get('/homes/:id/images', (req, res) => {
@@ -116,6 +121,17 @@ app.get('/:id/0.bundle.js', (req, res) => {
 
 app.get('/:id/1.bundle.js', (req, res) => {
   http.get(`${services[0].route}/1.bundle.js`, (serviceRes) => {
+    let data = '';
+    serviceRes.on('data', (chunk) => {data += chunk});
+    serviceRes.on('end', () => {
+      res.send(data);
+    })
+    .on('error', (err) => res.send(404));
+  });
+});
+
+app.get('/:id/2.bundle.js', (req, res) => {
+  http.get(`${services[0].route}/2.bundle.js`, (serviceRes) => {
     let data = '';
     serviceRes.on('data', (chunk) => {data += chunk});
     serviceRes.on('end', () => {

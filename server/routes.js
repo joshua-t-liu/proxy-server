@@ -1,5 +1,5 @@
 // routes should send style, script, and  body
-const local = false;
+const local = true;
 
 module.exports =  [
   {
@@ -14,8 +14,8 @@ module.exports =  [
     id: 'similar-homes',
     route: local ? 'http://localhost:3002' : 'http://18.217.19.243:80',
   },
-  {
-    id: 'comment-section',
-    route: local ? 'http://localhost:3003' : 'http://18.217.19.243:80',
-  },
+  // {
+  //   id: 'comment-section',
+  //   route: local ? 'http://localhost:3003' : 'http://18.217.19.243:80',
+  // },
 ];
