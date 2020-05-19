@@ -2,7 +2,7 @@ const express = require('express');
 const http = require('http');
 const compression = require('compression');
 const template = require('./server/template.js');
-const services = require('./server/routes.js');
+const services = require('./server/services.js');
 
 const app = express();
 const PORT = 3000;
@@ -11,11 +11,22 @@ app.use(compression());
 
 app.use(express.static('public'));
 
+app.get('/*.bundle.js', (req, res) => {
+  http.get(`${services[0].route}${req.url}`, (serviceRes) => {
+    let data = '';
+    serviceRes.on('data', (chunk) => {data += chunk});
+    serviceRes.on('end', () => {
+      res.send(data);
+    })
+    .on('error', (err) => res.send(404));
+  });
+});
+
 app.get('/:id', (req, res) => {
   const responses = services.map(({ route }) => {
     return new Promise((resolve, reject) => {
       let data = ''
-      http.get(`${route}/main.bundle.js`, (res) => {
+      http.get(`${route}/bundle.js`, (res) => {
         res.on('data', (chunk) => data += chunk);
         res.on('end', () => {
           resolve(data);
@@ -105,40 +116,13 @@ app.get('/house/comments/:id', (req, res) => {
     .on('error', (err) => res.send(404));
   });
 });
+
 ///house/comments/2
 //comments/:id
 
-app.get('/:id/0.bundle.js', (req, res) => {
-  http.get(`${services[0].route}/0.bundle.js`, (serviceRes) => {
-    let data = '';
-    serviceRes.on('data', (chunk) => {data += chunk});
-    serviceRes.on('end', () => {
-      res.send(data);
-    })
-    .on('error', (err) => res.send(404));
-  });
-});
-
-app.get('/:id/1.bundle.js', (req, res) => {
-  http.get(`${services[0].route}/1.bundle.js`, (serviceRes) => {
-    let data = '';
-    serviceRes.on('data', (chunk) => {data += chunk});
-    serviceRes.on('end', () => {
-      res.send(data);
-    })
-    .on('error', (err) => res.send(404));
-  });
-});
-
-app.get('/:id/2.bundle.js', (req, res) => {
-  http.get(`${services[0].route}/2.bundle.js`, (serviceRes) => {
-    let data = '';
-    serviceRes.on('data', (chunk) => {data += chunk});
-    serviceRes.on('end', () => {
-      res.send(data);
-    })
-    .on('error', (err) => res.send(404));
-  });
+app.get('/:id/*', (req, res) => {
+  const { id } = req.params;
+  res.redirect(`/${id}`);
 });
 
 app.listen(PORT, (err) => {
